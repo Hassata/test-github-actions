@@ -18,7 +18,8 @@ jobs:
                 distribution: 'temurin'
                 cache: maven
             - name: test-it
-              run: ./mvnw verify 
+              run: ./mvnw verify
+
     docker-build-push:
         name: Build & Push Docker Image
         runs-on: ubuntu-latest
@@ -26,6 +27,7 @@ jobs:
         permissions:
             contents: read
             packages: write
+            id-token: write
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -36,6 +38,12 @@ jobs:
                 registry: ghcr.io
                 username: ${{ github.actor }}
                 password: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Authenticate to Google Cloud
+              uses: google-github-actions/auth@v3
+              with:
+                project_id: 'adesso-gcp-demo-dev'
+                workload_identity_provider: 'projects/1095451677236/locations/global/workloadIdentityPools/github'
 
             - name: push to registry
               uses: docker/build-push-action@v6
