@@ -43,7 +43,7 @@ jobs:
               uses: google-github-actions/auth@v3
               with:
                 project_id: 'adesso-gcp-demo-dev'
-                workload_identity_provider: 'projects/1095451677236/locations/global/workloadIdentityPools/github'
+                workload_identity_provider: 'projects/1095451677236/locations/global/workloadIdentityPools/github/providers/my-repo'
 
             - name: push to registry
               uses: docker/build-push-action@v6
