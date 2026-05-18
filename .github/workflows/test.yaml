@@ -42,5 +42,5 @@ jobs:
               with:
                 context: .
                 push: true
-                tags: ghcr.io/user/demo:v1
+                tags: ghcr.io/hassata/demo:v1
                 
